@@ -11,7 +11,7 @@ import {
 
 const appraisalsCollectionRef = collection(db, 'appraisals');
 
-const appraisalService = {
+export const appraisalService = {
   /**
    * Creates a new appraisal document in Firestore.
    * @param {object} appraisalData - The data for the new appraisal. Must include an appraisal_id.
@@ -123,5 +123,3 @@ const appraisalService = {
     }
   },
 };
-
-export default appraisalService;

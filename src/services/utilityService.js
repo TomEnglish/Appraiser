@@ -18,7 +18,7 @@ import { db } from '../firebaseConfig'; // Adjust the path as necessary
 
 const UTILITIES_COLLECTION = 'report_utilities';
 
-const utilityService = {
+export const utilityService = { // Changed from 'export default'
   /**
    * Creates a new utility item in the report_utilities collection.
    * @param {string} utilityId - The ID for the new utility document.
@@ -170,5 +170,3 @@ const utilityService = {
     }
   },
 };
-
-export default utilityService;

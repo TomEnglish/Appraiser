@@ -61,21 +61,21 @@ This document provides a detailed breakdown of **Phase 1: Project Setup & Founda
 [ ] *   **High-Level Task**: React-Vite Project Initialization: Create the React project using Vite.
 
 ### Sub-Tasks:
-[ ]     3.1. **Ensure Node.js and npm/yarn are installed**:
+[x ]     3.1. **Ensure Node.js and npm/yarn are installed**:
 [ ]         *   Verify current versions.
-[ ]     3.2. **Create React Project using Vite**:
+[x ]     3.2. **Create React Project using Vite**:
 [ ]         *   Run `npm create vite@latest appraisal-data-frontend -- --template react-ts` (for TypeScript) or `npm create vite@latest appraisal-data-frontend -- --template react` (for JavaScript).
 [ ]         *   Navigate into the project directory: `cd appraisal-data-frontend`.
-[ ]     3.3. **Install Dependencies**:
+[x ]     3.3. **Install Dependencies**:
 [ ]         *   Run `npm install` (or `yarn install`).
-[ ]     3.4. **Initial Project Run**:
+[x ]     3.4. **Initial Project Run**:
 [ ]         *   Run `npm run dev` (or `yarn dev`) to start the development server.
 [ ]         *   Verify the default Vite app loads in the browser.
 
 ### Milestones:
-[ ] *   **M3.1**: React-Vite project structure created locally.
+[x ] *   **M3.1**: React-Vite project structure created locally.
 [ ]     *   **Verification**: Project directory `appraisal-data-frontend` exists with Vite's default file structure.
-[ ] *   **M3.2**: Basic Vite application runs successfully locally.
+[x ] *   **M3.2**: Basic Vite application runs successfully locally.
 [ ]     *   **Verification**: Running `npm run dev` starts the server, and the default React application is viewable and functional in a web browser (typically at `http://localhost:5173`).
 
 ## 4. Firebase SDK Integration
@@ -84,18 +84,18 @@ This document provides a detailed breakdown of **Phase 1: Project Setup & Founda
 [ ] *   **High-Level Task**: Firebase SDK Integration: Install and configure the Firebase SDK in the React app.
 
 ### Sub-Tasks:
-[ ]     4.1. **Install Firebase SDK**:
-[ ]         *   In the React project directory, run `npm install firebase` (or `yarn add firebase`).
-[ ]     4.2. **Obtain Firebase Project Configuration**:
-[ ]         *   In the Firebase console, go to "Project settings" -> "Your apps".
-[ ]         *   Click the web icon (`</>`) to "Add an app" if not already done, or select an existing web app.
-[ ]         *   Register the app and copy the Firebase SDK setup snippet (the `firebaseConfig` object).
-[ ]     4.3. **Create Firebase Configuration File**:
-[ ]         *   Create a file (e.g., `src/firebaseConfig.js` or `src/firebaseConfig.ts`).
-[ ]         *   Initialize Firebase in this file using the `firebaseConfig` object.
-[ ]         *   Export the Firebase app instance, Firestore instance, and Auth instance.
+[x ]     4.1. **Install Firebase SDK**:
+[x ]         *   In the React project directory, run `npm install firebase` (or `yarn add firebase`).
+[x ]     4.2. **Obtain Firebase Project Configuration**:
+[x ]         *   In the Firebase console, go to "Project settings" -> "Your apps".
+[x ]         *   Click the web icon (`</>`) to "Add an app" if not already done, or select an existing web app.
+[x ]         *   Register the app and copy the Firebase SDK setup snippet (the `firebaseConfig` object).
+[x ]     4.3. **Create Firebase Configuration File**:
+[x ]         *   Create a file (e.g., `src/firebaseConfig.js` or `src/firebaseConfig.ts`).
+[x ]         *   Initialize Firebase in this file using the `firebaseConfig` object.
+[x ]         *   Export the Firebase app instance, Firestore instance, and Auth instance.
 [ ]         *   Ensure API keys and other sensitive information are handled securely (e.g., using environment variables, though for initial local dev, direct inclusion is common before .env setup).
-[ ]     4.4. **Test Basic Firebase Connection**:
+[x ]     4.4. **Test Basic Firebase Connection**:
 [ ]         *   Attempt a simple Firestore read or write from a component (e.g., `App.jsx`) to verify the connection.
 
 ### Milestones:
@@ -104,7 +104,7 @@ This document provides a detailed breakdown of **Phase 1: Project Setup & Founda
 [ ] *   **M4.2**: Firebase configuration is set up in the React app.
 [ ]     *   **Verification**: `firebaseConfig.js` (or `.ts`) file created with project credentials. Firebase app initialized.
 [ ] *   **M4.3**: Basic Firebase service (e.g., Firestore) can be accessed from the React app.
-[ ]     *   **Verification**: A test component can successfully connect to Firestore (e.g., fetch a test document or write one and confirm in Firebase console). No console errors related to Firebase initialization.
+[x ]     *   **Verification**: A test component can successfully connect to Firestore (e.g., fetch a test document or write one and confirm in Firebase console). No console errors related to Firebase initialization.
 
 ## 5. Basic UI Layout
 

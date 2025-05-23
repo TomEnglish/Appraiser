@@ -192,3 +192,11 @@ This document provides a granular breakdown of tasks, milestones, and testing fo
 [ ] *   **Other Backend Logic:**
 [ ]     *   Any business logic that requires elevated privileges or should not be exposed on the client-side for security reasons.
 [ ]     *   Computationally intensive tasks that could degrade client-side performance.
+
+### 5.2. Appraisal List View Enhancements
+
+**Reminder for Future Phase (Deferred from Phase 3):**
+
+[ ] *   Implement Pagination for the [`AppraisalListView.jsx`](../src/components/appraisals/AppraisalListView.jsx).
+[ ] *   Implement Sorting capabilities for the [`AppraisalListView.jsx`](../src/components/appraisals/AppraisalListView.jsx) (e.g., by creation date, status, client name).
+[ ] *   Implement Filtering capabilities for the [`AppraisalListView.jsx`](../src/components/appraisals/AppraisalListView.jsx) (e.g., by status, search by ID).

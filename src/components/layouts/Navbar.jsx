@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 
 function AppNavbar() {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="primary" variant="dark" expand="lg">
       <Container>
         <Navbar.Brand href="#home">Appraisal Data App</Navbar.Brand>
       </Container>
