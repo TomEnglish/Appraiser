@@ -130,3 +130,6 @@ dist/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Ignore Firebase service account key
+admin-scripts/serviceAccountKey.json
