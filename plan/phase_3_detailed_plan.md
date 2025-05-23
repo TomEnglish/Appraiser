@@ -1,0 +1,165 @@
+# Detailed Plan: Phase 3 - Appraisal Data Entry & Review Feature Development
+
+**Estimated Duration:** 3-4 Weeks
+
+This phase focuses on building the core user interface components for managing and reviewing appraisal data. It leverages the Firestore data models and service layer established in Phase 2. The `appraisal_id` will be consistently displayed and handled with an "A-" prefix (e.g., "A-12345"). It's assumed the service layer or ID generation process ensures this prefix.
+
+## 1. Appraisal List View ([`AppraisalListView.jsx`](AppraisalListView.jsx))
+
+**Goal:** Develop the UI to display a list of appraisals, enabling users to navigate, get a status overview, and select appraisals for detailed viewing or editing.
+
+**Detailed Sub-Tasks:**
+
+[ ] *   **1.1. Basic Structure & Layout:**
+[ ]     *   Implement the main layout for the appraisal list page, integrating with the overall application layout (Navbar, Sidebar).
+[ ]     *   Use a table or card-based layout to display appraisals.
+[ ] *   **1.2. Data Fetching & Display:**
+[ ]     *   Integrate with `appraisalService.js` to fetch a list of appraisals from Firestore.
+[ ]     *   Display key appraisal information in the list (e.g., `appraisal_id` (with "A-" prefix), `client_name`, `property_address` (denormalized), `status`, `creation_date`).
+[ ]     *   Implement loading states (e.g., spinner while data is fetching).
+[ ]     *   Implement error handling for data fetching (e.g., display an error message if fetching fails).
+[ ] *   **1.3. Pagination:**
+[ ]     *   Implement client-side or server-side pagination if the number of appraisals is expected to be large.
+[ ]     *   Provide UI controls for navigating between pages.
+[ ] *   **1.4. Sorting:**
+[ ]     *   Allow users to sort the appraisal list by key columns (e.g., `creation_date`, `status`, `client_name`, `appraisal_id`).
+[ ]     *   Implement UI elements for sort controls (e.g., clickable table headers).
+[ ] *   **1.5. Filtering:**
+[ ]     *   Implement basic filtering capabilities (e.g., filter by `status`, search by `appraisal_id`).
+[ ]     *   Provide UI elements for filter inputs (e.g., dropdown for status, text input for ID).
+[ ] *   **1.6. Navigation Links:**
+[ ]     *   Each item in the list should link to its corresponding [`AppraisalDetailView.jsx`](AppraisalDetailView.jsx) (e.g., `/appraisals/:appraisalId`, where `appraisalId` includes the "A-" prefix).
+[ ]     *   Provide a button/link to navigate to the [`AppraisalForm.jsx`](AppraisalForm.jsx) for creating a new appraisal (e.g., `/appraisals/new`).
+[ ]     *   Consider adding quick action links (e.g., "Edit") directly in the list view.
+
+**Milestones:**
+
+[ ] *   **M3.1.1:** Basic [`AppraisalListView.jsx`](AppraisalListView.jsx) component created, displaying mock/sample appraisal data (including `appraisal_id` with "A-" prefix).
+[ ] *   **M3.1.2:** [`AppraisalListView.jsx`](AppraisalListView.jsx) successfully fetches and displays real appraisal data from Firestore, correctly showing the "A-" prefix for `appraisal_id`.
+[ ] *   **M3.1.3:** Pagination and sorting functionalities are implemented and working correctly.
+[ ] *   **M3.1.4:** Basic filtering by status and `appraisal_id` is implemented.
+[ ] *   **M3.1.5:** Navigation links to detail, edit, and new appraisal views are functional, using the prefixed `appraisal_id` in routes.
+
+**Suggested Tests/Verification:**
+
+[ ] *   **T3.1.1:** Verify that the appraisal list page renders correctly with placeholder data, showing `appraisal_id` with "A-" prefix.
+[ ] *   **T3.1.2:** Confirm that the list populates with data from Firestore; `appraisal_id`s are correctly prefixed. Check loading and error states.
+[ ] *   **T3.1.3:** Test pagination: navigate to different pages, ensure correct data display. Test sorting: sort by various columns including `appraisal_id`.
+[ ] *   **T3.1.4:** Test filtering: filter by different statuses and search by `appraisal_id` (with and without prefix to see how it's handled); verify the list updates correctly.
+[ ] *   **T3.1.5:** Click on an appraisal item; verify it navigates to the correct detail view using the prefixed ID. Click "Create New" button; verify it navigates to the appraisal form.
+
+## 2. Appraisal Create/Edit Form ([`AppraisalForm.jsx`](AppraisalForm.jsx))
+
+**Goal:** Develop a comprehensive form for creating new appraisals and editing existing ones, including fields for associated location data. The `appraisal_id` handling should account for the "A-" prefix.
+
+**Detailed Sub-Tasks:**
+
+[ ] *   **2.1. Form Structure & Layout:**
+[ ]     *   Design and implement the layout for the appraisal form, ensuring a user-friendly data entry experience.
+[ ]     *   Organize form fields into logical sections.
+[ ] *   **2.2. Input Fields Implementation:**
+[ ]     *   Implement input fields for all core `appraisals` collection fields.
+[ ]     *   For `appraisal_id`:
+[ ]         *   If auto-generated by the system (recommended for new appraisals), the "A-" prefix should be applied by the backend/service layer. The form might display this ID once generated.
+[ ]         *   If user-input (e.g., for linking to an existing system's ID), the form should clearly indicate the "A-" prefix requirement or ideally, auto-apply/validate it. For this phase, assume new IDs are generated by the system.
+[ ]     *   Implement appropriate input types (text, number, date pickers, dropdowns).
+[ ] *   **2.3. Location Data Sub-Form/Section:**
+[ ]     *   Integrate fields for entering/editing location data.
+[ ] *   **2.4. Form Validation:**
+[ ]     *   Implement client-side validation for required fields and data formats.
+[ ]     *   If `appraisal_id` is user-editable, validate the "A-" prefix.
+[ ] *   **2.5. Data Submission (Create & Update):**
+[ ]     *   Integrate with `appraisalService.js`. The service should handle the "A-" prefix for `appraisal_id` consistently when interacting with Firestore.
+[ ]     *   Handle form submission, loading states, and success/error feedback.
+[ ]     *   On successful creation/update, redirect using the prefixed `appraisal_id`.
+[ ] *   **2.6. Pre-filling Form for Editing:**
+[ ]     *   When editing, fetch appraisal data (which includes the prefixed `appraisal_id`) and pre-fill the form. The `appraisal_id` field would likely be read-only or handled carefully if editable.
+
+**Milestones:**
+
+[ ] *   **M3.2.1:** Basic [`AppraisalForm.jsx`](AppraisalForm.jsx) structure with key input fields. `appraisal_id` display/input considers the "A-" prefix.
+[ ] *   **M3.2.2:** Location data input section integrated.
+[ ] *   **M3.2.3:** Client-side form validation implemented.
+[ ] *   **M3.2.4:** Form submission for creating a new appraisal is functional. The generated `appraisal_id` in Firestore includes the "A-" prefix.
+[ ] *   **M3.2.5:** Form submission for editing an existing appraisal is functional, pre-fills data (with prefixed `appraisal_id`), and updates Firestore.
+
+**Suggested Tests/Verification:**
+
+[ ] *   **T3.2.1:** Verify form fields render. Check `appraisal_id` field behavior regarding the "A-" prefix (e.g., display of system-generated ID).
+[ ] *   **T3.2.2:** Test entering location data.
+[ ] *   **T3.2.3:** Test form validation. If `appraisal_id` is editable, test prefix validation.
+[ ] *   **T3.2.4:** Create a new appraisal: verify the `appraisal_id` in Firestore and displayed in UI (e.g., list view, detail view) has the "A-" prefix.
+[ ] *   **T3.2.5:** Edit an appraisal: verify form pre-fills with the prefixed `appraisal_id`. Verify updates.
+
+## 3. Appraisal Detail View ([`AppraisalDetailView.jsx`](AppraisalDetailView.jsx))
+
+**Goal:** Develop the UI to display comprehensive details of a selected appraisal, ensuring the `appraisal_id` (with "A-" prefix) is correctly handled and displayed.
+
+**Detailed Sub-Tasks:**
+
+[ ] *   **3.1. Basic Structure & Layout:**
+[ ]     *   Implement the main layout for the appraisal detail page.
+[ ] *   **3.2. Data Fetching & Display:**
+[ ]     *   Fetch appraisal data using the `appraisalId` (which includes "A-" prefix) from the route.
+[ ]     *   Display all core appraisal fields, ensuring `appraisal_id` is shown with its prefix.
+[ ]     *   Display associated location data.
+[ ]     *   Handle loading/error states.
+[ ] *   **3.3. Report Item Selection UI:**
+[ ]     *   Implement UI elements for marking items for report inclusion.
+[ ]     *   Save selection state to `selected_for_report` in Firestore.
+[ ] *   **3.4. Display Associated Data (Sub-collections - if applicable):**
+[ ]     *   Display data from sub-collections if present.
+[ ] *   **3.5. Navigation:**
+[ ]     *   Provide an "Edit" link navigating to [`AppraisalForm.jsx`](AppraisalForm.jsx) with the prefixed `appraisalId`.
+[ ]     *   Provide a "Back to List" link.
+
+**Milestones:**
+
+[ ] *   **M3.3.1:** Basic [`AppraisalDetailView.jsx`](AppraisalDetailView.jsx) structure, displaying mock data with prefixed `appraisal_id`.
+[ ] *   **M3.3.2:** [`AppraisalDetailView.jsx`](AppraisalDetailView.jsx) fetches and displays full details, correctly showing the prefixed `appraisal_id`.
+[ ] *   **M3.3.3:** UI for report item selection implemented.
+[ ] *   **M3.3.4:** User selections for report inclusion are saved to Firestore.
+[ ] *   **M3.3.5:** Navigation links (using prefixed `appraisal_id`) are functional.
+
+**Suggested Tests/Verification:**
+
+[ ] *   **T3.3.1:** Verify detail view renders with placeholder data, `appraisal_id` prefixed.
+[ ] *   **T3.3.2:** Select an appraisal; verify its details (including prefixed `appraisal_id`) are displayed. Test loading/error states with prefixed IDs.
+[ ] *   **T3.3.3:** Interact with selection UI.
+[ ] *   **T3.3.4:** Verify selections persist and are stored in Firestore.
+[ ] *   **T3.3.5:** Test "Edit" (with prefixed ID in URL) and "Back to List" buttons.
+
+## 4. State Management for Appraisal Data
+
+**Goal:** Implement client-side state management, ensuring `appraisal_id` (with "A-" prefix) is handled consistently.
+
+**Detailed Sub-Tasks:**
+
+[ ] *   **4.1. Choose State Management Library:**
+[ ]     *   Confirm choice (e.g., React Context API, Zustand).
+[ ] *   **4.2. Define State Structure:**
+[ ]     *   Identify data for global/shared state (appraisal list, current appraisal, loading/error states). All instances of `appraisal_id` in the state should reflect the "A-" prefix.
+[ ] *   **4.3. Implement State Logic (Store/Context):**
+[ ]     *   Create store/provider.
+[ ]     *   Implement actions/functions for CRUD operations, ensuring `appraisal_id`s are handled with the prefix.
+[ ] *   **4.4. Integrate State with Components:**
+[ ]     *   Connect components to the state solution.
+[ ]     *   Ensure components use/display `appraisal_id` with the prefix from the state.
+
+**Milestones:**
+
+[ ] *   **M3.4.1:** State management library set up.
+[ ] *   **M3.4.2:** State structure defined, `appraisal_id`s consistently prefixed.
+[ ] *   **M3.4.3:** [`AppraisalListView.jsx`](AppraisalListView.jsx) consumes list data from state (prefixed `appraisal_id`s).
+[ ] *   **M3.4.4:** [`AppraisalForm.jsx`](AppraisalForm.jsx) and [`AppraisalDetailView.jsx`](AppraisalDetailView.jsx) use state for current appraisal (prefixed `appraisal_id`).
+[ ] *   **M3.4.5:** Loading/error states managed globally.
+
+**Suggested Tests/Verification:**
+
+[ ] *   **T3.4.1:** Verify store/context initialization.
+[ ] *   **T3.4.2:** Inspect state; confirm `appraisal_id`s are prefixed.
+[ ] *   **T3.4.3:** Actions in [`AppraisalListView.jsx`](AppraisalListView.jsx) update state; view reflects changes with prefixed IDs.
+[ ] *   **T3.4.4:** Test CRUD operations through form/detail views; verify global state and components reflect changes with prefixed `appraisal_id`s.
+[ ] *   **T3.4.5:** Test loading/error state display.
+
+---
