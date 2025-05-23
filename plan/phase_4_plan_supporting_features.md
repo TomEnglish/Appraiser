@@ -170,3 +170,25 @@ This document provides a granular breakdown of tasks, milestones, and testing fo
 [ ]     *   As an unauthenticated user, try to read/write data that requires authentication.
 [ ]     *   As an authenticated user, try to perform actions according to their permissions (e.g., create a log entry, ensuring `user_id` is correctly populated and validated by rules).
 [ ]     *   If rules restrict access based on `assigned_user_id`, test that users can only see/edit appraisals assigned to them.
+
+## 5. Future Considerations
+
+### 5.1. Revisit Firebase Cloud Functions
+
+**Reminder for Phase 4 (or later):**
+
+[ ] We have decided to temporarily skip the implementation of Firebase Cloud Functions (originally planned for Phase 2, Section 2). This section serves as a reminder to re-evaluate and potentially integrate them.
+
+**Potential Use Cases for Cloud Functions:**
+
+[ ] *   **Advanced Server-Side Data Validation:** Implement complex validation logic that cannot or should not be handled purely on the client-side.
+[ ] *   **Complex Data Denormalization/Aggregation:** Trigger functions based on Firestore events (e.g., `onCreate`, `onUpdate`, `onDelete`) to perform:
+[ ]     *   Denormalization of data across collections for optimized querying.
+[ ]     *   Aggregation of data (e.g., calculating averages, sums, counts) and storing results.
+[ ] *   **Automated Tasks or Notifications:**
+[ ]     *   Send email or push notifications based on specific data changes or scheduled intervals.
+[ ]     *   Perform routine cleanup tasks.
+[ ]     *   Integrate with third-party services.
+[ ] *   **Other Backend Logic:**
+[ ]     *   Any business logic that requires elevated privileges or should not be exposed on the client-side for security reasons.
+[ ]     *   Computationally intensive tasks that could degrade client-side performance.
